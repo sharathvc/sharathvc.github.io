@@ -344,37 +344,37 @@ section .title::after{
     background: steelblue;
 }
 .skills-content .right .python::before{
-    width: 60%;
+    width: 100%;
 }
 .skills-content .right .visualization::before{
-    width: 80%;
+    width: 100%;
 }
 .skills-content .right .analysis::before{
-    width: 70%;
+    width: 100%;
 }
-.skills-content .right .linear::before{
-    width: 60%;
+.skills-content .right .Statistics::before{
+    width: 100%;
 }
-.skills-content .right .KMeans::before{
-    width: 60%;
+.skills-content .right .Power BI::before{
+    width: 100%;
 }
-.skills-content .right .logistic::before{
-    width: 40%;
+.skills-content .right .Jira::before{
+    width: 100%;
 }
 .skills-content .right .mysql::before{
-    width: 60%;
+    width: 100%;
 }
 .skills-content .right .hql::before{
-    width: 60%;
+    width: 100%;
 }
 .skills-content .right .excel::before{
-    width: 60%;
+    width: 100%;
 }
 .skills-content .right .tableau::before{
-    width: 70%;
+    width: 100%;
 }
 .skills-content .right .aws::before{
-    width: 60%;
+    width: 100%;
 }
 
 /* education section styling */
