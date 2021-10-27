@@ -343,39 +343,6 @@ section .title::after{
     top: 0;
     background: steelblue;
 }
-.skills-content .right .python::before{
-    width: 100%;
-}
-.skills-content .right .visualization::before{
-    width: 100%;
-}
-.skills-content .right .analysis::before{
-    width: 100%;
-}
-.skills-content .right .Statistics::before{
-    width: 100%;
-}
-.skills-content .right .Power BI::before{
-    width: 100%;
-}
-.skills-content .right .Jira::before{
-    width: 100%;
-}
-.skills-content .right .mysql::before{
-    width: 100%;
-}
-.skills-content .right .hql::before{
-    width: 100%;
-}
-.skills-content .right .excel::before{
-    width: 100%;
-}
-.skills-content .right .tableau::before{
-    width: 100%;
-}
-.skills-content .right .aws::before{
-    width: 100%;
-}
 
 /* education section styling */
 .education .title::after{
